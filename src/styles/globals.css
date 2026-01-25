@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   DESIGN TOKENS - LLM Theme
+   Source: LLM_tokens.json (Figma Variables)
+   ============================================ */
+
+:root {
+  /* Primary Brand */
+  --color-primary-300: #ECF1FF;
+  --color-primary-700: #007AC8;
+  --color-primary-750: #1E72A8;
+  --color-primary-800: #0B5F95;
+  --color-focus: #80CAF4;
+  
+  /* Secondary/Accent */
+  --color-secondary-300: #FEF9EF;
+  --color-secondary-500: #F3C060;
+  
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-light-grey: #F8F8FA;
+  --color-light-neutral: #F3F5FB;
+  --color-divider: #EDEDED;
+  --color-bright-grey: #ECF1FF;
+  --color-medium-grey: #6A6A6A;
+  --color-charcoal: #333333;
+  --color-black: #000000;
+  
+  /* Feedback */
+  --color-error: #EB4015;
+  --color-warning: #FFB136;
+  --color-success: #0C7663;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Sizing */
+  --button-height: 48px;
+  --input-height: 48px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-white text-neutral-800;
+  }
+  
+  /* Focus visible styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-focus;
+  }
+  
+  /* Remove default focus for mouse users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+@layer components {
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-primary-700 text-white font-semibold rounded-[8px] px-6 py-3
+           min-h-[48px] transition-colors duration-200
+           hover:bg-primary-750 active:bg-primary-800
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2;
+  }
+  
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-white text-primary-700 font-semibold rounded-[8px] px-6 py-3
+           min-h-[48px] border border-primary-700 transition-colors duration-200
+           hover:bg-neutral-100 active:bg-neutral-100
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2;
+  }
+  
+  /* Ghost Button */
+  .btn-ghost {
+    @apply bg-transparent text-primary-700 font-semibold rounded-[8px] px-6 py-3
+           min-h-[48px] transition-colors duration-200
+           hover:bg-neutral-100 active:bg-neutral-100
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2;
+  }
+  
+  /* Text Input */
+  .input {
+    @apply w-full bg-white border border-neutral-200 rounded-[8px] px-4 py-3
+           min-h-[48px] text-body text-neutral-800
+           placeholder:text-neutral-500
+           focus:border-primary-700 focus:ring-2 focus:ring-focus focus:ring-offset-0
+           disabled:bg-neutral-50 disabled:cursor-not-allowed;
+  }
+  
+  .input-error {
+    @apply border-feedback-error focus:border-feedback-error focus:ring-feedback-error/20;
+  }
+  
+  /* Card */
+  .card {
+    @apply bg-white border border-neutral-200 rounded-lg p-6 shadow-card;
+  }
+  
+  /* Radio Card */
+  .radio-card {
+    @apply bg-white border border-neutral-200 rounded-[8px] p-4 cursor-pointer
+           transition-all duration-200
+           hover:border-primary-700
+           data-[state=checked]:border-primary-700 data-[state=checked]:bg-primary-300;
+  }
+}
+
+/* ============================================
+   SLIDER CUSTOM STYLES
+   ============================================ */
+
+.slider-track {
+  @apply bg-neutral-200 relative grow rounded-full h-2;
+}
+
+.slider-range {
+  @apply absolute bg-primary-700 rounded-full h-full;
+}
+
+.slider-thumb {
+  @apply block w-6 h-6 bg-primary-700 rounded-full border-[3px] border-white
+         shadow-button cursor-pointer transition-transform
+         hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-focus;
+}
+
+/* ============================================
+   PROGRESS INDICATOR
+   ============================================ */
+
+.progress-step {
+  @apply text-body-sm text-neutral-500 pb-2 border-b-2 border-transparent
+         transition-colors duration-200;
+}
+
+.progress-step-active {
+  @apply text-primary-700 font-semibold border-primary-700;
+}
+
+.progress-step-completed {
+  @apply text-neutral-800;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Map Pin Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.pin-float {
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Counter Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+  display: inline-block;
+}
