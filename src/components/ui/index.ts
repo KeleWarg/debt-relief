@@ -18,3 +18,5 @@ export type { CheckboxProps } from './Checkbox'
 export { USMap } from './USMap'
 
 export { AnimatedCounter } from './AnimatedCounter'
+
+export { Starburst } from './Starburst'

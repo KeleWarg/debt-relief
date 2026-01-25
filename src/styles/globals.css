@@ -215,3 +215,91 @@
   animation: shake 0.4s ease-in-out;
   display: inline-block;
 }
+
+/* ============================================
+   BUTTON INTERACTIVE EFFECTS
+   ============================================ */
+
+/* Arrow slides right on hover */
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.btn-continue:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
+/* Shimmer/sheen effect on hover */
+.btn-continue {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-continue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transition: none;
+}
+
+.btn-continue:hover::before {
+  animation: shimmer 0.8s ease forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Click depression effect */
+.btn-continue:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* Starburst container */
+.btn-continue-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Starburst positioning */
+.starburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.starburst.active {
+  animation: starburst-pop 0.5s ease-out forwards;
+}
+
+@keyframes starburst-pop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
