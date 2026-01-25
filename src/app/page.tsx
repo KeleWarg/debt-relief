@@ -13,7 +13,7 @@ import {
   PhoneScreen,
   AddressScreen,
 } from '@/components/screens'
-import type { FunnelData, DebtType } from '@/types/funnel'
+import type { FunnelData, DebtTypeOption } from '@/types/funnel'
 
 // Funnel steps
 type FunnelStep =
@@ -92,7 +92,7 @@ export default function Home() {
           <DebtTypeScreen
             initialValue={funnelData.debtType}
             onBack={goToPreviousStep}
-            onSubmit={(debtType: DebtType) => {
+            onSubmit={(debtType: DebtTypeOption) => {
               updateFunnelData({ debtType })
               goToNextStep()
             }}

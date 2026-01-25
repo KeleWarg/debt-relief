@@ -16,7 +16,10 @@ export interface FunnelData {
   // Step 1: Location
   state?: string
   
-  // Step 2: Debt Types (multi-select)
+  // Step 2: Debt Type (single selection)
+  debtType?: DebtTypeOption
+  
+  // Alternative: Debt Types (multi-select) - kept for compatibility
   debtTypes?: DebtTypeOption[]
   
   // Step 3: Debt Amount
