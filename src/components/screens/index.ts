@@ -1,6 +1,7 @@
 // Screen Components
 export { LocationScreen } from './LocationScreen'
 export { DebtTypeScreen } from './DebtTypeScreen'
+export { DidYouKnowScreen } from './DidYouKnowScreen'
 export { DebtAmountScreen } from './DebtAmountScreen'
 export { IncomeScreen } from './IncomeScreen'
 export { DateOfBirthScreen } from './DateOfBirthScreen'

@@ -4,6 +4,7 @@ import * as React from 'react'
 import {
   LocationScreen,
   DebtTypeScreen,
+  DidYouKnowScreen,
   DebtAmountScreen,
   IncomeScreen,
   DateOfBirthScreen,
@@ -19,6 +20,7 @@ import type { FunnelData, DebtTypeOption } from '@/types/funnel'
 type FunnelStep =
   | 'location'
   | 'debtType'
+  | 'didYouKnow'
   | 'debtAmount'
   | 'income'
   | 'dateOfBirth'
@@ -33,6 +35,7 @@ type FunnelStep =
 const STEP_ORDER: FunnelStep[] = [
   'location',
   'debtType',
+  'didYouKnow',
   'debtAmount',
   'income',
   'dateOfBirth',
@@ -96,6 +99,15 @@ export default function Home() {
               updateFunnelData({ debtType })
               goToNextStep()
             }}
+          />
+        )
+      
+      case 'didYouKnow':
+        return (
+          <DidYouKnowScreen
+            debtType={funnelData.debtType}
+            onBack={goToPreviousStep}
+            onNext={goToNextStep}
           />
         )
       
