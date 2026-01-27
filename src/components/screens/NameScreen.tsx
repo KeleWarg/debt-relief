@@ -64,17 +64,16 @@ export function NameScreen({
         {/* Headline */}
         <div className="space-y-2 text-center">
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
-            Your name
+            What&apos;s your name?
           </h1>
           <p className="text-body text-neutral-500 text-center">
-            Using your exact first and last name helps verify your identity and 
-            create your debt profile, so we can quickly personalize your best 
-            debt relief options
+            Use your legal name as it appears on your accounts. This helps us 
+            match you with the right creditor records.
           </p>
         </div>
         
         {/* Name Inputs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-4 max-w-[410px] mx-auto w-full">
           <Input
             label="First Name"
             placeholder="Enter your first name"
