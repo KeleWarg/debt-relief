@@ -204,6 +204,8 @@ export default function Home() {
         return (
           <EmailScreen
             initialValue={funnelData.email}
+            firstName={funnelData.firstName}
+            debtAmount={funnelData.debtAmount || 20000}
             onBack={goToPreviousStep}
             onSubmit={(email) => {
               updateFunnelData({ email })

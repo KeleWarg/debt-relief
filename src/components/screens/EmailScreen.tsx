@@ -4,9 +4,11 @@ import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { Lightbulb } from 'lucide-react'
 import { FormLayout } from '@/components/layout/FormLayout'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { formatCurrency } from '@/lib/utils'
 
 // Validation schema
 const emailSchema = z.object({
@@ -17,8 +19,17 @@ type EmailFormData = z.infer<typeof emailSchema>
 
 interface EmailScreenProps {
   initialValue?: string
+  firstName?: string
+  debtAmount?: number
   onBack?: () => void
   onSubmit?: (email: string) => void
+}
+
+/**
+ * Capitalize the first letter of a string
+ */
+function capitalizeFirstLetter(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
 /**
@@ -28,6 +39,8 @@ interface EmailScreenProps {
  */
 export function EmailScreen({ 
   initialValue = '', 
+  firstName,
+  debtAmount = 20000,
   onBack, 
   onSubmit 
 }: EmailScreenProps) {
@@ -45,13 +58,19 @@ export function EmailScreen({
   const onFormSubmit = (data: EmailFormData) => {
     onSubmit?.(data.email)
   }
+
+  // Calculate potential savings (40% of debt)
+  const potentialSavings = Math.round(debtAmount * 0.4)
   
   return (
     <FormLayout currentStep={10} onBack={onBack}>
       <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6">
         {/* Headline */}
         <h1 className="font-display text-2xl md:text-3xl font-bold text-neutral-900 text-center">
-          Congrats! Your debt profile is ready.
+          {firstName 
+            ? `Congrats, ${capitalizeFirstLetter(firstName)}! Your debt profile is ready.`
+            : 'Congrats! Your debt profile is ready.'
+          }
         </h1>
         
         {/* Subheading */}
@@ -60,7 +79,7 @@ export function EmailScreen({
         </p>
         
         {/* Email Input */}
-        <div className="pt-2">
+        <div className="pt-2 max-w-[410px] mx-auto w-full">
           <Input
             label="Email address"
             type="email"
@@ -75,8 +94,16 @@ export function EmailScreen({
           Continue to Debt Profile
         </Button>
         
+        {/* Fun Fact Callout */}
+        <div className="bg-primary-300 rounded-xl p-4 flex items-start gap-3 max-w-[410px] mx-auto w-full">
+          <Lightbulb className="w-5 h-5 text-primary-700 flex-shrink-0 mt-0.5" />
+          <p className="text-body-sm text-neutral-800">
+            People with your debt profile typically save {formatCurrency(potentialSavings)}+ through a personalized debt relief plan.
+          </p>
+        </div>
+        
         {/* Privacy note */}
-        <p className="text-caption text-neutral-500 text-center">
+        <p className="text-caption text-neutral-500 text-center max-w-[410px] mx-auto">
           We respect your privacy. Your email will only be used to send you 
           information about your debt relief options.
         </p>
