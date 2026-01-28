@@ -599,11 +599,9 @@ export function DebtProfileScreen({
                     </p>
                   </div>
                   
-                  {/* CTA Button - inline on desktop, hidden on mobile (shown in sticky below) */}
-                  <div className="hidden sm:block mt-6">
-                    <Button type="submit" form="profile-form" fullWidth showTrailingIcon>
-                      See My Options
-                    </Button>
+                  {/* Partner logos carousel - Desktop only, moved from right panel */}
+                  <div className="hidden lg:block">
+                    <PartnerCarousel />
                   </div>
                 </div>
               )}
@@ -624,7 +622,7 @@ export function DebtProfileScreen({
                   isAnimating={isAnimating}
                 />
               ) : (
-                /* Image with overlay */
+                /* Image with overlay + CTA Button */
                 <div className="flex flex-col">
                   <div className="relative rounded-2xl overflow-hidden">
                     {/* Image */}
@@ -653,8 +651,12 @@ export function DebtProfileScreen({
                     </div>
                   </div>
                   
-                  {/* Partner logos carousel */}
-                  <PartnerCarousel />
+                  {/* CTA Button - below image on desktop */}
+                  <div className="mt-6">
+                    <Button type="submit" form="profile-form" fullWidth showTrailingIcon>
+                      See My Options
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
