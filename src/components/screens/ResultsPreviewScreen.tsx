@@ -154,19 +154,19 @@ export function ResultsPreviewScreen({
           *Estimated savings. Actual results vary based on your specific debt situation and enrolled program.
         </p>
 
-        {/* CTA Button - 1.0s delay, Sticky on mobile */}
-        <StickyButtonContainer 
-          className="w-full mt-8 animate-fade-in-up"
-        >
-          <Button 
-            type="button" 
-            fullWidth 
-            showTrailingIcon
-            onClick={onNext}
-          >
-            See my debt profile
-          </Button>
-        </StickyButtonContainer>
+        {/* CTA Button - Sticky on mobile */}
+        <div className="w-full mt-8">
+          <StickyButtonContainer>
+            <Button 
+              type="button" 
+              fullWidth 
+              showTrailingIcon
+              onClick={onNext}
+            >
+              See my debt profile
+            </Button>
+          </StickyButtonContainer>
+        </div>
       </div>
     </FormLayout>
   )

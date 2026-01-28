@@ -15,6 +15,7 @@ import {
   EmailScreen,
   PhoneScreen,
   AddressScreen,
+  PartnerMatchingScreen,
   ResultsPage,
 } from '@/components/screens'
 import type { FunnelData, DebtTypeOption } from '@/types/funnel'
@@ -34,6 +35,7 @@ type FunnelStep =
   | 'email'
   | 'phone'
   | 'address'
+  | 'partnerMatching'
   | 'complete'
 
 // Step order for navigation
@@ -51,6 +53,7 @@ const STEP_ORDER: FunnelStep[] = [
   'debtProfile',
   'phone',
   'address',
+  'partnerMatching',
   'complete',
 ]
 
@@ -62,6 +65,11 @@ const STEP_ORDER: FunnelStep[] = [
 export default function Home() {
   const [currentStep, setCurrentStep] = React.useState<FunnelStep>('location')
   const [funnelData, setFunnelData] = React.useState<FunnelData>({})
+  
+  // Scroll to top when step changes
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [currentStep])
   
   // Navigation helpers
   const goToNextStep = () => {
@@ -253,6 +261,14 @@ export default function Home() {
               updateFunnelData({ address })
               goToNextStep()
             }}
+          />
+        )
+      
+      case 'partnerMatching':
+        return (
+          <PartnerMatchingScreen
+            firstName={funnelData.firstName}
+            onNext={goToNextStep}
           />
         )
       

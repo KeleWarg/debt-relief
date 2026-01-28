@@ -194,7 +194,7 @@ export function DateOfBirthScreen({
         
         {/* Submit Button - Sticky on mobile */}
         <StickyButtonContainer>
-          <Button type="submit" fullWidth>
+          <Button type="submit" fullWidth showTrailingIcon>
             Continue
           </Button>
         </StickyButtonContainer>

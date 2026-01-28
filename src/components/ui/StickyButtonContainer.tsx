@@ -36,11 +36,9 @@ export function StickyButtonContainer({
       <div
         className={cn(
           // Mobile: fixed at bottom with styling
-          'fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]',
-          // Add safe area padding for iOS devices
-          'pb-[calc(1rem+env(safe-area-inset-bottom))]',
+          'fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 px-4 pt-4 pb-6 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]',
           // Tablet/Desktop: normal positioning
-          'sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:bg-transparent sm:border-0 sm:p-0 sm:shadow-none sm:pb-0',
+          'sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:bg-transparent sm:border-0 sm:p-0 sm:shadow-none',
           className
         )}
       >

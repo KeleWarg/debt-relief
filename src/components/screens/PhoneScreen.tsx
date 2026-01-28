@@ -136,7 +136,7 @@ export function PhoneScreen({
         
         {/* Submit Button - Sticky on mobile */}
         <StickyButtonContainer>
-          <Button type="submit" fullWidth>
+          <Button type="submit" fullWidth showTrailingIcon>
             Agree & Continue
           </Button>
         </StickyButtonContainer>
