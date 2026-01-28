@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 
 // Validation schema
@@ -60,7 +60,7 @@ export function NameScreen({
   
   return (
     <FormLayout currentStep={7} onBack={onBack}>
-      <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6">
+      <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6 has-sticky-button">
         {/* Headline */}
         <div className="space-y-2 text-center">
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
@@ -88,10 +88,12 @@ export function NameScreen({
           />
         </div>
         
-        {/* Submit Button */}
-        <Button type="submit" fullWidth>
-          Continue
-        </Button>
+        {/* Submit Button - Sticky on mobile */}
+        <StickyButtonContainer>
+          <Button type="submit" fullWidth>
+            Continue
+          </Button>
+        </StickyButtonContainer>
       </form>
     </FormLayout>
   )

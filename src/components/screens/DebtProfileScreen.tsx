@@ -14,7 +14,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { TrustBadges } from '@/components/layout/TrustBadges'
 import { ProgressIndicator } from '@/components/layout/ProgressIndicator'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { Tooltip } from '@/components/ui/Tooltip'
@@ -194,14 +194,15 @@ function PhoneNumberForm({
           </p>
         )}
 
-        {/* CTA Button */}
-        <Button 
-          type="submit" 
-          fullWidth 
-          className="mt-6"
-        >
-          Agree &amp; Continue
-        </Button>
+        {/* CTA Button - Sticky on mobile */}
+        <StickyButtonContainer className="mt-6">
+          <Button 
+            type="submit" 
+            fullWidth
+          >
+            Agree &amp; Continue
+          </Button>
+        </StickyButtonContainer>
       </form>
 
     </div>
@@ -594,10 +595,12 @@ export function DebtProfileScreen({
                       </p>
                     </div>
                     
-                    {/* CTA Button */}
-                    <Button type="submit" fullWidth showTrailingIcon className="mt-6">
-                      See My Options
-                    </Button>
+                    {/* CTA Button - Sticky on mobile */}
+                    <StickyButtonContainer className="mt-6">
+                      <Button type="submit" fullWidth showTrailingIcon>
+                        See My Options
+                      </Button>
+                    </StickyButtonContainer>
                   </div>
                 </form>
               )}

@@ -154,7 +154,7 @@ export function AddressAutocomplete({
       {/* Suggestions dropdown */}
       {showSuggestions && (
         <ul 
-          className="absolute z-50 w-full bg-white border border-neutral-200 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto"
+          className="absolute z-[60] w-full bg-white border border-neutral-200 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto"
           role="listbox"
         >
           {filteredSuggestions.map((address, index) => (

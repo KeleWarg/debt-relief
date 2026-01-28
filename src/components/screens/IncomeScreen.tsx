@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Slider } from '@/components/ui/Slider'
 import { formatCurrency, calculateSavings } from '@/lib/utils'
 
@@ -125,7 +125,7 @@ export function IncomeScreen({
       currentStep={4} 
       onBack={onBack}
     >
-      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6 flex flex-col items-center">
+      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6 flex flex-col items-center has-sticky-button">
         {/* Headline */}
         <div className="w-full space-y-2 text-center">
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
@@ -237,12 +237,12 @@ export function IncomeScreen({
           </div>
         </div>
         
-        {/* Submit Button */}
-        <div className="w-full">
+        {/* Submit Button - Sticky on mobile */}
+        <StickyButtonContainer className="w-full">
           <Button type="submit" fullWidth showTrailingIcon>
             Continue
           </Button>
-        </div>
+        </StickyButtonContainer>
       </form>
     </FormLayout>
   )

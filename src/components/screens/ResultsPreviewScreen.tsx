@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { LottieIcon } from '@/components/ui/LottieIcon'
 import { formatCurrency } from '@/lib/utils'
@@ -83,7 +83,7 @@ export function ResultsPreviewScreen({
 
   return (
     <FormLayout currentStep={5} onBack={onBack}>
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center has-sticky-button">
         {/* Lottie Animation - plays immediately, no fade-in */}
         <div className="w-20 h-20 mb-4">
           <LottieIcon 
@@ -154,10 +154,9 @@ export function ResultsPreviewScreen({
           *Estimated savings. Actual results vary based on your specific debt situation and enrolled program.
         </p>
 
-        {/* CTA Button - 1.0s delay */}
-        <div 
+        {/* CTA Button - 1.0s delay, Sticky on mobile */}
+        <StickyButtonContainer 
           className="w-full mt-8 animate-fade-in-up"
-          style={{ animationDelay: '1000ms' }}
         >
           <Button 
             type="button" 
@@ -167,7 +166,7 @@ export function ResultsPreviewScreen({
           >
             See my debt profile
           </Button>
-        </div>
+        </StickyButtonContainer>
       </div>
     </FormLayout>
   )

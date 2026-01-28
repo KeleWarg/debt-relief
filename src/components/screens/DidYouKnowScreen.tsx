@@ -11,7 +11,7 @@ import {
   type LucideIcon
 } from 'lucide-react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { LottieIcon } from '@/components/ui/LottieIcon'
 import { type DebtTypeOption } from '@/types/funnel'
 
@@ -76,7 +76,7 @@ export function DidYouKnowScreen({
 
   return (
     <FormLayout currentStep={2} onBack={onBack}>
-      <div className="animate-slide-up flex flex-col items-center text-center py-8 space-y-8">
+      <div className="animate-slide-up flex flex-col items-center text-center py-8 space-y-8 has-sticky-button">
         {/* Lottie Animation */}
         <div className="flex items-center justify-center">
           <div className="w-32 h-32">
@@ -115,12 +115,12 @@ export function DidYouKnowScreen({
           </div>
         </div>
         
-        {/* CTA Button */}
-        <div className="w-full max-w-md">
+        {/* CTA Button - Sticky on mobile */}
+        <StickyButtonContainer className="w-full max-w-md">
           <Button type="button" fullWidth onClick={onNext}>
             Continue
           </Button>
-        </div>
+        </StickyButtonContainer>
         
         {/* Reassurance Line */}
         <p className="text-sm text-neutral-500 text-center italic">

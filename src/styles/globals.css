@@ -528,3 +528,12 @@
 .animate-testimonial {
   animation: testimonialFadeIn 0.4s ease-out;
 }
+
+/* ============================================
+   STICKY BUTTON CONTAINER
+   ============================================ */
+
+/* Add bottom padding to forms that contain sticky buttons on mobile */
+.has-sticky-button {
+  @apply pb-24 sm:pb-0;
+}

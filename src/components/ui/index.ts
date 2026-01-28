@@ -27,3 +27,5 @@ export { Tooltip } from './Tooltip'
 
 export { AddressAutocomplete } from './AddressAutocomplete'
 export type { ParsedAddress } from './AddressAutocomplete'
+
+export { StickyButtonContainer } from './StickyButtonContainer'

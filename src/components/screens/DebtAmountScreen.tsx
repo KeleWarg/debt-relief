@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 
 interface DebtAmountScreenProps {
@@ -59,7 +59,7 @@ export function DebtAmountScreen({
       currentStep={3} 
       onBack={onBack}
     >
-      <form onSubmit={handleSubmit} className="animate-slide-up">
+      <form onSubmit={handleSubmit} className="animate-slide-up has-sticky-button">
         <div className="space-y-8 text-center">
           {/* Headline */}
           <div>
@@ -125,10 +125,12 @@ export function DebtAmountScreen({
             </div>
           </div>
 
-          {/* Submit Button */}
-          <Button type="submit" fullWidth showTrailingIcon>
-            Continue
-          </Button>
+          {/* Submit Button - Sticky on mobile */}
+          <StickyButtonContainer>
+            <Button type="submit" fullWidth showTrailingIcon>
+              Continue
+            </Button>
+          </StickyButtonContainer>
 
           {/* Disclaimer */}
           <p className="text-caption text-neutral-500">

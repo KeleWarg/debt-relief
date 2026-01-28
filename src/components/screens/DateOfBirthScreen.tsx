@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select'
 
 interface DateOfBirthScreenProps {
@@ -104,7 +104,7 @@ export function DateOfBirthScreen({
   
   return (
     <FormLayout currentStep={6} onBack={onBack}>
-      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6">
+      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6 has-sticky-button">
         {/* Headline */}
         <div className="space-y-2 text-center">
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
@@ -192,10 +192,12 @@ export function DateOfBirthScreen({
           </p>
         )}
         
-        {/* Submit Button */}
-        <Button type="submit" fullWidth>
-          Continue
-        </Button>
+        {/* Submit Button - Sticky on mobile */}
+        <StickyButtonContainer>
+          <Button type="submit" fullWidth>
+            Continue
+          </Button>
+        </StickyButtonContainer>
       </form>
     </FormLayout>
   )

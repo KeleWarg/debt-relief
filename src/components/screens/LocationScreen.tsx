@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select'
 import { USMap } from '@/components/ui/USMap'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
@@ -80,7 +80,7 @@ export function LocationScreen({
       onBack={onBack}
       showProgress={false}
     >
-      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6">
+      <form onSubmit={handleSubmit} className="animate-slide-up space-y-6 has-sticky-button">
         {/* Headline */}
         <div className="space-y-2 text-center">
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
@@ -127,10 +127,12 @@ export function LocationScreen({
           avgSavings={stats.avgSavings}
         />
         
-        {/* Submit Button */}
-        <Button type="submit" fullWidth showTrailingIcon>
-          Continue
-        </Button>
+        {/* Submit Button - Sticky on mobile */}
+        <StickyButtonContainer>
+          <Button type="submit" fullWidth showTrailingIcon>
+            Continue
+          </Button>
+        </StickyButtonContainer>
       </form>
     </FormLayout>
   )

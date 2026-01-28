@@ -6,7 +6,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { TrustBadges } from '@/components/layout/TrustBadges'
 import { ProgressIndicator } from '@/components/layout/ProgressIndicator'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 import { AddressAutocomplete, type ParsedAddress } from '@/components/ui/AddressAutocomplete'
 import { formatCurrency, cn } from '@/lib/utils'
@@ -323,7 +323,7 @@ export function AddressScreen({
             
             {/* Right Column - Address Form */}
             <div className="order-1 lg:order-none">
-              <form onSubmit={handleSubmit} className="animate-slide-up">
+              <form onSubmit={handleSubmit} className="animate-slide-up has-sticky-button">
                 {/* Subheading */}
                 <p className="text-neutral-500 text-sm mb-6">
                   Your address helps us find the best debt relief options where you 
@@ -450,18 +450,19 @@ export function AddressScreen({
                   </div>
                 )}
                 
-                {/* Submit Button */}
-                <Button 
-                  type="submit" 
-                  fullWidth 
-                  className={cn(
-                    'mt-6',
-                    !isManualEntry && !selectedAddress && 'opacity-50'
-                  )}
-                  disabled={!isManualEntry && !selectedAddress}
-                >
-                  See Your Options
-                </Button>
+                {/* Submit Button - Sticky on mobile */}
+                <StickyButtonContainer className="mt-6">
+                  <Button 
+                    type="submit" 
+                    fullWidth 
+                    className={cn(
+                      !isManualEntry && !selectedAddress && 'opacity-50'
+                    )}
+                    disabled={!isManualEntry && !selectedAddress}
+                  >
+                    See Your Options
+                  </Button>
+                </StickyButtonContainer>
                 
                 {/* Privacy Note */}
                 <p className="text-xs text-neutral-500 mt-4 text-center">

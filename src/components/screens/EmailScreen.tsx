@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Lightbulb } from 'lucide-react'
 import { FormLayout } from '@/components/layout/FormLayout'
-import { Button } from '@/components/ui/Button'
+import { Button, StickyButtonContainer } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 import { formatCurrency } from '@/lib/utils'
 
@@ -64,7 +64,7 @@ export function EmailScreen({
   
   return (
     <FormLayout currentStep={10} onBack={onBack}>
-      <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6">
+      <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6 has-sticky-button">
         {/* Headline */}
         <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
           {firstName 
@@ -89,10 +89,12 @@ export function EmailScreen({
           />
         </div>
         
-        {/* Submit Button */}
-        <Button type="submit" fullWidth showTrailingIcon>
-          Continue to Debt Profile
-        </Button>
+        {/* Submit Button - Sticky on mobile */}
+        <StickyButtonContainer>
+          <Button type="submit" fullWidth showTrailingIcon>
+            Continue to Debt Profile
+          </Button>
+        </StickyButtonContainer>
         
         {/* Fun Fact Callout */}
         <div className="bg-primary-300 rounded-xl p-4 flex items-start gap-3 max-w-[410px] mx-auto w-full">
