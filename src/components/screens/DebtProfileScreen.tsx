@@ -156,7 +156,7 @@ function PhoneNumberForm({
         Enter your phone number to confirm your identity and move one step closer to finding the right debt relief option.
       </p>
 
-      <form onSubmit={onSubmit}>
+      <form id="phone-form" onSubmit={onSubmit}>
         {/* Phone Input */}
         <Input
           label="Phone number"
@@ -194,15 +194,15 @@ function PhoneNumberForm({
           </p>
         )}
 
-        {/* CTA Button - Sticky on mobile */}
-        <StickyButtonContainer className="mt-6">
+        {/* CTA Button - Desktop only (inline) */}
+        <div className="hidden sm:block mt-6">
           <Button 
             type="submit" 
             fullWidth
           >
             Agree &amp; Continue
           </Button>
-        </StickyButtonContainer>
+        </div>
       </form>
 
     </div>
@@ -365,7 +365,12 @@ export function DebtProfileScreen({
       
       {/* Main Content */}
       <main className="flex-1 flex flex-col">
-        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-1">
+        {/* Hidden form for profile card submit */}
+        {!showPhoneForm && (
+          <form id="profile-form" onSubmit={handleSeeOptions} className="contents" />
+        )}
+        
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 pb-24 sm:pb-8 flex-1">
           {/* Page headline */}
           <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center mb-8">
             {showPhoneForm 
@@ -517,99 +522,90 @@ export function DebtProfileScreen({
                 </div>
               ) : (
                 /* Debt Profile Card */
-                <form onSubmit={handleSeeOptions}>
-                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card border border-gray-100">
-                    {/* Stats Box */}
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      {/* Row 1 - Debt-to-Income Ratio (highlighted) */}
-                      <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                        <div className="flex items-center gap-2">
-                          <AlertTriangle className="w-4 h-4 text-neutral-500" />
-                          <span className="text-sm text-neutral-800">Debt-to-Income Ratio</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-semibold text-neutral-900">{ratio}%</span>
-                          <span className={cn(
-                            'px-2 py-0.5 rounded-full text-xs font-medium',
-                            ratioBadge.className
-                          )}>
-                            {ratioBadge.label}
-                          </span>
-                        </div>
+                <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card border border-gray-100">
+                  {/* Stats Box */}
+                  <div className="bg-gray-50 rounded-xl p-4">
+                    {/* Row 1 - Debt-to-Income Ratio (highlighted) */}
+                    <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="w-4 h-4 text-neutral-500" />
+                        <span className="text-sm text-neutral-800">Debt-to-Income Ratio</span>
                       </div>
-                      
-                      {/* Row 2 - Debt Type */}
-                      <div className="flex justify-between py-3 border-b border-gray-200">
-                        <span className="text-sm text-neutral-800">Debt Type</span>
-                        <span className="font-semibold text-neutral-900">
-                          {DEBT_TYPE_LABELS[debtType]}
-                        </span>
-                      </div>
-                      
-                      {/* Row 3 - Total Debt */}
-                      <div className="flex justify-between py-3 border-b border-gray-200">
-                        <span className="text-sm text-neutral-800">Total Debt</span>
-                        <span className="font-semibold text-neutral-900">
-                          {formatCurrency(debtAmount)}
-                        </span>
-                      </div>
-                      
-                      {/* Row 4 - Annual Income */}
-                      <div className="flex justify-between pt-3">
-                        <span className="text-sm text-neutral-800">Annual Income</span>
-                        <span className="font-semibold text-neutral-900">
-                          {formatCurrency(income)}
+                      <div className="flex items-center gap-2">
+                        <span className="font-semibold text-neutral-900">{ratio}%</span>
+                        <span className={cn(
+                          'px-2 py-0.5 rounded-full text-xs font-medium',
+                          ratioBadge.className
+                        )}>
+                          {ratioBadge.label}
                         </span>
                       </div>
                     </div>
                     
-                    {/* Recommended Approach */}
-                    <div className="mt-6">
-                      <p className="text-xs uppercase tracking-wide text-neutral-500 mb-3">
-                        Recommended Approach
-                      </p>
-                      <div className="inline-flex flex-wrap gap-2">
-                        <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
-                          <Handshake className="w-4 h-4" />
-                          Debt Negotiation
-                        </span>
-                        <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
-                          <TrendingDown className="w-4 h-4" />
-                          Lower Interest
-                        </span>
-                        <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
-                          <Calendar className="w-4 h-4" />
-                          Payment Plan
-                        </span>
-                      </div>
+                    {/* Row 2 - Debt Type */}
+                    <div className="flex justify-between py-3 border-b border-gray-200">
+                      <span className="text-sm text-neutral-800">Debt Type</span>
+                      <span className="font-semibold text-neutral-900">
+                        {DEBT_TYPE_LABELS[debtType]}
+                      </span>
                     </div>
                     
-                    {/* Savings Box */}
-                    <div className="bg-secondary-300 rounded-xl p-4 mt-6">
-                      <p className="text-neutral-500 text-sm">Potential Savings</p>
-                      <p className="text-2xl font-bold text-feedback-success">
-                        {formatCurrency(savings)}
-                      </p>
-                      <p className="text-neutral-500 text-sm mt-1">
-                        Timeline: 24-36 months
-                      </p>
+                    {/* Row 3 - Total Debt */}
+                    <div className="flex justify-between py-3 border-b border-gray-200">
+                      <span className="text-sm text-neutral-800">Total Debt</span>
+                      <span className="font-semibold text-neutral-900">
+                        {formatCurrency(debtAmount)}
+                      </span>
                     </div>
                     
-                    {/* CTA Button - inline on desktop, hidden on mobile (shown in sticky below) */}
-                    <div className="hidden sm:block mt-6">
-                      <Button type="submit" fullWidth showTrailingIcon>
-                        See My Options
-                      </Button>
+                    {/* Row 4 - Annual Income */}
+                    <div className="flex justify-between pt-3">
+                      <span className="text-sm text-neutral-800">Annual Income</span>
+                      <span className="font-semibold text-neutral-900">
+                        {formatCurrency(income)}
+                      </span>
                     </div>
                   </div>
                   
-                  {/* CTA Button - Sticky on mobile only */}
-                  <StickyButtonContainer className="sm:hidden">
-                    <Button type="submit" fullWidth showTrailingIcon>
+                  {/* Recommended Approach */}
+                  <div className="mt-6">
+                    <p className="text-xs uppercase tracking-wide text-neutral-500 mb-3">
+                      Recommended Approach
+                    </p>
+                    <div className="inline-flex flex-wrap gap-2">
+                      <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
+                        <Handshake className="w-4 h-4" />
+                        Debt Negotiation
+                      </span>
+                      <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
+                        <TrendingDown className="w-4 h-4" />
+                        Lower Interest
+                      </span>
+                      <span className="bg-primary-300 text-primary-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4" />
+                        Payment Plan
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Savings Box */}
+                  <div className="bg-secondary-300 rounded-xl p-4 mt-6">
+                    <p className="text-neutral-500 text-sm">Potential Savings</p>
+                    <p className="text-2xl font-bold text-feedback-success">
+                      {formatCurrency(savings)}
+                    </p>
+                    <p className="text-neutral-500 text-sm mt-1">
+                      Timeline: 24-36 months
+                    </p>
+                  </div>
+                  
+                  {/* CTA Button - inline on desktop, hidden on mobile (shown in sticky below) */}
+                  <div className="hidden sm:block mt-6">
+                    <Button type="submit" form="profile-form" fullWidth showTrailingIcon>
                       See My Options
                     </Button>
-                  </StickyButtonContainer>
-                </form>
+                  </div>
+                </div>
               )}
             </div>
             
@@ -665,6 +661,21 @@ export function DebtProfileScreen({
           </div>
           
         </div>
+        
+        {/* CTA Button - Sticky on mobile only, outside of animated container */}
+        {!showPhoneForm ? (
+          <StickyButtonContainer className="sm:hidden">
+            <Button type="submit" form="profile-form" fullWidth showTrailingIcon>
+              See My Options
+            </Button>
+          </StickyButtonContainer>
+        ) : (
+          <StickyButtonContainer className="sm:hidden">
+            <Button type="submit" form="phone-form" fullWidth>
+              Agree &amp; Continue
+            </Button>
+          </StickyButtonContainer>
+        )}
       </main>
       
       {/* Trust Badges */}
