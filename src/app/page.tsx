@@ -241,6 +241,8 @@ export default function Home() {
       case 'address':
         return (
           <AddressScreen
+            firstName={funnelData.firstName}
+            debtAmount={funnelData.debtAmount}
             initialValue={funnelData.address}
             onBack={() => {
               // Skip the standalone phone step - go back to debtProfile with phone form
