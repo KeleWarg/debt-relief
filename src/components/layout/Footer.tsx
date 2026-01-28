@@ -27,6 +27,8 @@ export function Footer({ className }: FooterProps) {
     <footer 
       className={cn(
         'w-full bg-white',
+        // Add bottom padding on mobile to account for sticky button
+        'pb-24 sm:pb-0',
         className
       )}
       style={{
