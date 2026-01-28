@@ -335,7 +335,7 @@ export function DebtProfileScreen({
       {/* Back button - shown when phone form is NOT visible */}
       {!showPhoneForm && onBack && (
         <div className="w-full bg-white sticky top-12 z-40">
-          <div className="h-14 relative max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="h-14 relative max-w-6xl mx-auto px-4 sm:px-6">
             <button
               onClick={handleBack}
               className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 flex items-center gap-2 text-neutral-900 hover:text-primary-700 transition-colors"
