@@ -66,7 +66,7 @@ export function EmailScreen({
     <FormLayout currentStep={10} onBack={onBack}>
       <form onSubmit={handleSubmit(onFormSubmit)} className="animate-slide-up space-y-6">
         {/* Headline */}
-        <h1 className="font-display text-2xl md:text-3xl font-bold text-neutral-900 text-center">
+        <h1 className="font-display text-display sm:text-display-md lg:text-display-lg text-neutral-900 text-center">
           {firstName 
             ? `Congrats, ${capitalizeFirstLetter(firstName)}! Your debt profile is ready.`
             : 'Congrats! Your debt profile is ready.'
@@ -75,7 +75,7 @@ export function EmailScreen({
         
         {/* Subheading */}
         <p className="text-body text-neutral-500 text-center">
-          What&apos;s your email address?
+          Please share your email so we know where to send your debt relief plan
         </p>
         
         {/* Email Input */}
@@ -90,7 +90,7 @@ export function EmailScreen({
         </div>
         
         {/* Submit Button */}
-        <Button type="submit" fullWidth>
+        <Button type="submit" fullWidth showTrailingIcon>
           Continue to Debt Profile
         </Button>
         

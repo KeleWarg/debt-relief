@@ -191,11 +191,23 @@ export default function Home() {
       case 'debtProfile':
         return (
           <DebtProfileScreen
-            firstName={funnelData.firstName || 'User'}
+            firstName={funnelData.firstName}
+            debtType={funnelData.debtType}
             debtAmount={funnelData.debtAmount || 20000}
+            income={funnelData.annualIncome || 50000}
+            state={funnelData.state}
+            dateOfBirth={funnelData.dateOfBirth}
+            initialPhone={funnelData.phone}
+            initialShowPhoneForm={!!funnelData.phone}
             onBack={goToPreviousStep}
             onSubmit={() => {
               goToNextStep()
+            }}
+            onPhoneSubmit={({ phone, consent }) => {
+              // Phone form is now embedded in DebtProfileScreen
+              // Save phone data and skip to address step
+              updateFunnelData({ phone, phoneConsent: consent })
+              setCurrentStep('address')
             }}
           />
         )
@@ -230,7 +242,10 @@ export default function Home() {
         return (
           <AddressScreen
             initialValue={funnelData.address}
-            onBack={goToPreviousStep}
+            onBack={() => {
+              // Skip the standalone phone step - go back to debtProfile with phone form
+              setCurrentStep('debtProfile')
+            }}
             onSubmit={(address) => {
               updateFunnelData({ address })
               goToNextStep()
