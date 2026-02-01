@@ -133,7 +133,7 @@ export function DebtTypeScreen({
                 </svg>
               </div>
               <p className="text-sm font-normal text-[#1E2125] leading-5">
-                You stop paying every creditor separately. Just one reduced bill by up to 50%
+                Stop paying each creditor separately. Make one payment per month and cut your debt by up to half.
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export function DebtTypeScreen({
         <div className="flex items-center justify-center gap-6 text-sm text-neutral-600">
           <span className="flex items-center gap-1.5">
             <Check className="w-4 h-4 text-[#0C7663]" />
-            Risk-free
+            Soft credit pull to start
           </span>
           <span className="flex items-center gap-1.5">
             <Check className="w-4 h-4 text-[#0C7663]" />

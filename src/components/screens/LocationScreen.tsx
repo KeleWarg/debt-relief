@@ -88,8 +88,8 @@ export function LocationScreen({
             <span className="block">Save with Debt Relief</span>
           </h1>
           <p className="text-body text-neutral-500 text-center">
-            Struggling with $15K+ in credit card or loan debt? Get matched with relief 
-            options that could cut your payments in half.
+            Struggling with $15,000+ in credit card or personal loan debt? Get matched 
+            with relief options that could cut your payments in half.
           </p>
         </div>
         

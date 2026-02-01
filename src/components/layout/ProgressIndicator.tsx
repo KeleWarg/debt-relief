@@ -24,8 +24,36 @@ const stepSubtitles: Record<number, string> = {
   11: 'Final step - your address',
 }
 
+// Time estimate per step (in seconds) - Total: ~3 minutes
+const stepTimeEstimates: Record<number, number> = {
+  1: 15,  // Location selection
+  2: 10,  // Debt type selection
+  3: 10,  // Did you know screen
+  4: 15,  // Debt amount
+  5: 15,  // Income
+  6: 10,  // Results preview
+  7: 15,  // Date of birth
+  8: 15,  // Name
+  9: 10,  // Email
+  10: 30, // Phone verification
+  11: 25, // Address
+}
+
 const TOTAL_SEGMENTS = 6
 const TOTAL_STEPS = 11
+
+// Calculate remaining time from current step onward
+const getRemainingTime = (currentStep: number): string => {
+  let totalSeconds = 0
+  for (let i = currentStep; i <= TOTAL_STEPS; i++) {
+    totalSeconds += stepTimeEstimates[i] || 30 // default 30s if not defined
+  }
+  
+  const minutes = Math.ceil(totalSeconds / 60)
+  if (minutes < 1) return '<1 min left'
+  if (minutes === 1) return '~1 min left'
+  return `~${minutes} min left`
+}
 
 /**
  * ProgressIndicator Component
@@ -80,9 +108,11 @@ export function ProgressIndicator({ currentStep, onBack, className }: ProgressIn
           </button>
         )}
 
-        {/* Subtitle */}
-        <p className="text-center text-sm text-neutral-600 mb-2">
+        {/* Subtitle with time remaining */}
+        <p className="text-center text-sm text-neutral-500 mb-2">
           {subtitle}
+          <span className="text-neutral-300 mx-2">·</span>
+          <span className="text-neutral-400">{getRemainingTime(currentStep)}</span>
         </p>
 
         {/* Segmented Progress Bar with progressive fill */}

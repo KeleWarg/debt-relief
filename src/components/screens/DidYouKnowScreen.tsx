@@ -24,29 +24,30 @@ interface StatItem {
 }
 
 // Stats content map based on debt type (headline is now universal)
+// Sources: Federal Reserve (credit card), TransUnion/Credible (personal loan)
 const DEBT_TYPE_STATS: Record<DebtTypeOption | 'default', StatItem[]> = {
   'credit-card': [
-    { icon: CreditCard, text: 'Average credit card debt per household: $7,951' },
-    { icon: TrendingUp, text: 'Average credit card APR: 24.7%' },
+    { icon: CreditCard, text: 'Average credit card debt per household: $4,180' },
+    { icon: TrendingUp, text: 'Average credit card APR: 22.3%' },
     { icon: TrendingDown, text: 'Debt relief typically reduces balances 30-50%' },
     { icon: ShieldCheck, text: "Checking your options won't affect your credit score" },
   ],
   'personal-loan': [
-    { icon: FileText, text: 'Average personal loan balance: $8,400' },
-    { icon: TrendingUp, text: 'Average personal loan APR: 12.2%' },
-    { icon: TrendingDown, text: 'Debt relief typically reduces balances 30-50%' },
+    { icon: FileText, text: 'Average personal loan balance: $11,676' },
+    { icon: TrendingUp, text: 'Average 3-year personal loan APR: 13.06%' },
+    { icon: TrendingDown, text: 'Average 5-year personal loan APR: 18.46%' },
     { icon: ShieldCheck, text: "Checking your options won't affect your credit score" },
   ],
   'both': [
-    { icon: Wallet, text: "You're not alone — millions carry multiple debt types" },
-    { icon: TrendingUp, text: 'Combined balances often mean higher interest paid' },
+    { icon: CreditCard, text: 'Average credit card debt per household: $4,180' },
+    { icon: FileText, text: 'Average personal loan balance: $11,676' },
     { icon: TrendingDown, text: 'Debt relief typically reduces balances 30-50%' },
     { icon: ShieldCheck, text: "Checking your options won't affect your credit score" },
   ],
   // Fall back to 'both' variant for unrecognized debt types
   'default': [
-    { icon: Wallet, text: "You're not alone — millions carry multiple debt types" },
-    { icon: TrendingUp, text: 'Combined balances often mean higher interest paid' },
+    { icon: CreditCard, text: 'Average credit card debt per household: $4,180' },
+    { icon: FileText, text: 'Average personal loan balance: $11,676' },
     { icon: TrendingDown, text: 'Debt relief typically reduces balances 30-50%' },
     { icon: ShieldCheck, text: "Checking your options won't affect your credit score" },
   ],
@@ -125,6 +126,11 @@ export function DidYouKnowScreen({
         {/* Reassurance Line */}
         <p className="text-sm text-neutral-500 text-center italic">
           You&apos;re taking the right step — help is available.
+        </p>
+        
+        {/* Disclaimer */}
+        <p className="text-xs text-neutral-400 text-center">
+          Average rates and balances subject to change. Rates updated as of February 2026.
         </p>
       </div>
     </FormLayout>
